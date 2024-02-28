@@ -22,7 +22,7 @@ let sizeContainer;
 function containerList(livel) {
     //
 
-
+    grid.innerHTML = ''; 
     switch (livel) {
         case '1':
             sizeContainer = 10;
