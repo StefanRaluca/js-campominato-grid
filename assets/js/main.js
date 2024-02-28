@@ -38,8 +38,15 @@ function listContainer() {
             // Aggiungiamo il numero all'interno della cella
 
             column.appendChild(numberElement);
-            
+
             console.log(progressiveNumber);
+// Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
+column.addEventListener("click", function() {
+    column.classList.toggle('cell-clicked');
+
+ // Stampiamo in   console il numero della cella cliccata
+    console.log("Cell clicked:", progressiveNumber);
+});
 
             // Mettiamo la colonna nella riga
             row.appendChild(column);
@@ -53,3 +60,4 @@ function listContainer() {
 playButton.addEventListener("click", function () {
     listContainer();
 });
+
