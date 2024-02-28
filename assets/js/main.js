@@ -40,13 +40,21 @@ function listContainer() {
             column.appendChild(numberElement);
 
             console.log(progressiveNumber);
-// Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
-column.addEventListener("click", function() {
-    column.classList.toggle('cell-clicked');
+            // Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
+            column.addEventListener("click", function () {
+//facciamo una let dove definiamo tutte le cell 
+                let allCell = document.querySelectorAll('.container-column');
+                //console.log(allCell);
+//loop for per rimuovere la classe 
+                for (i = 0; i < allCell.length; i++) {
+                    allCell[i].classList.remove('cell-clicked');
+                }
+//usiamo toggle che aggiunge la classe (o la rimuove) nel nostro caso lo aggiunge 
+                column.classList.toggle('cell-clicked');
 
- // Stampiamo in   console il numero della cella cliccata
-    console.log("Cell clicked:", progressiveNumber);
-});
+                // Stampiamo in   console il numero della cella cliccata
+                console.log('Clicked cell:', progressiveNumber);
+            });
 
             // Mettiamo la colonna nella riga
             row.appendChild(column);

@@ -51,6 +51,9 @@ main {
 .container-row{
     display: flex;
 }
+.cell-clicked{
+    background-color: blue;
+}
 footer div {
     font-size: 20px;
     padding: 10px;
