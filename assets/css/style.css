@@ -27,11 +27,21 @@ header {
 
 button {
     width: 80px;
-    margin-bottom: 16px;
     margin-right: 15px;
+    padding: 5px;
 
 }
-
+.logo_right{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.style-select{
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 3px;
+}
 main {
     display: flex;
     justify-content: center;
