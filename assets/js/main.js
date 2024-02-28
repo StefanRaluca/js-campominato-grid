@@ -13,11 +13,8 @@ console.log(grid);
 let playButton = document.querySelector("button");
 console.log(playButton);
 
-// formiamo le rows and column al interno del div container list 
-
 // facciamo una funzione in quale generiamo le righe e le collone 
 function listContainer() {
-
     // Generiamo le righe del container list
     for (let i = 0; i < 10; i++) {
         // Creiamo un elemento div per rappresentare la riga
@@ -25,23 +22,34 @@ function listContainer() {
         row.classList.add('container-row');
         console.log(row);
 
-        // Aggiungiamo la riga al container della griglia
-        grid.appendChild(row);
-
         // Generiamo le colonne della riga 
         for (let y = 0; y < 10; y++) {
-            // facciamo aggiungere un elemento div per ogni cubo
+            // Creiamo un elemento div per rappresentare la colonna
             let column = document.createElement('div');
             column.classList.add('container-column');
             console.log(column);
+
             // Assegniamo un numero progressivo alla cella
             let progressiveNumber = i * 10 + y + 1;
-            // mettiamo nella cella il numero progressivo che lo abbiamo definito prima nella let
-            column.innerHTML = progressiveNumber;
+
+            // Creiamo un span per visualizzare il numero all'interno della cella
+            let numberElement = document.createElement('span');
+            numberElement.innerHTML = progressiveNumber;
+            // Aggiungiamo il numero all'interno della cella
+
+            column.appendChild(numberElement);
+            
             console.log(progressiveNumber);
 
-            // Mettiamo alla riga la rispetiva cella 
+            // Mettiamo la colonna nella riga
             row.appendChild(column);
         }
+
+        // Aggiungiamo la riga al container della griglia
+        grid.appendChild(row);
     }
 }
+// quando si fa click sul button si genera la function per creare la griglia
+playButton.addEventListener("click", function () {
+    listContainer();
+});
