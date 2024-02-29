@@ -112,10 +112,10 @@ function listContainer() {
                 //facciamo una let dove definiamo tutte le cell 
                 let allCell = document.querySelectorAll('.container-column');
                 //console.log(allCell);
-                //loop for per rimuovere la classe 
+            /*     //loop for per rimuovere la classe 
                 for (i = 0; i < allCell.length; i++) {
                     allCell[i].classList.remove('cell-clicked');
-                }
+                } */
                 //usiamo toggle che aggiunge la classe (o la rimuove) nel nostro caso lo aggiunge 
                 column.classList.toggle('cell-clicked');
 
