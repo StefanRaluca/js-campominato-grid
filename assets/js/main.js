@@ -24,7 +24,7 @@ let selectYourLivel = document.getElementById('difficultySelect');
 //creiamo una function per generare i numeri casuali nel array mushrooms
 function mushroomsGenerate(number) {
     mushrooms = [];
-
+    let i = 0;
     // facciamo un ciclo while per stabilire la condizione dei numeri nel array 
     while (mushrooms.length < 16) {
         //stabiliamo una variabile su false  per vedere se  posizione è duplicata
@@ -47,9 +47,8 @@ function mushroomsGenerate(number) {
 
         }
 
-
-
     }
+   
 
 }
 // definiamo una let (globale) vuota che prendera ogni volta altro valore in base alla scelta
@@ -106,10 +105,8 @@ function listContainer() {
 
             console.log(progressiveNumber);
 
-            if (mushrooms.includes(progressiveNumber)) {
-                column.classList.add('mushrooms');
-            }
-            console.log(mushrooms);
+        
+           // console.log(mushrooms);
             // Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
             column.addEventListener("click", function () {
                 //facciamo una let dove definiamo tutte le cell 
@@ -122,8 +119,11 @@ function listContainer() {
                 //usiamo toggle che aggiunge la classe (o la rimuove) nel nostro caso lo aggiunge 
                 column.classList.toggle('cell-clicked');
 
+    if (mushrooms.includes(progressiveNumber)) {
+                column.classList.add('mushrooms');
+            }
                 // Stampiamo in   console il numero della cella cliccata
-                console.log('Clicked cell:', progressiveNumber);
+                console.log('Clicked cell:', progressiveNumber , mushrooms);
             });
 
             // Mettiamo la colonna nella riga
