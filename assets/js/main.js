@@ -12,17 +12,53 @@ let grid = document.getElementById('container_list')
 console.log(grid);
 let playButton = document.querySelector("button");
 console.log(playButton);
+//creiamo un array vuota per i funghi 
+let mushrooms = [];
+// creiamo un let score dove definiamo 0;
+let score = 0;
 //Bonus
-
 //selezioniamo il input 
 let selectYourLivel = document.getElementById('difficultySelect');
+
+
+//creiamo una function per generare i numeri casuali nel array mushrooms
+function mushroomsGenerate(number) {
+    mushrooms = [];
+
+    // facciamo un ciclo while per stabilire la condizione dei numeri nel array 
+    while (mushrooms.length < 16) {
+        //stabiliamo una variabile su false  per vedere se  posizione è duplicata
+        let duplicatePosition = false;
+        //generiamo un numero random compresso tra 1 e il numero totale delle celle 
+        let positionMushrooms = Math.floor(Math.random() * (sizeContainer * sizeContainer)) + 1;
+
+
+        //creiamo una condizione per la positione dei mushrooms con ciclo for e if
+        for (i = 0; i < mushrooms.length; i++) {
+            if (mushrooms[i] === positionMushrooms) {
+                duplicatePosition = true;
+                break;
+            }
+        }
+        // Se la posizione non è duplicata, la pushiamo all'array dei funghi
+        if (duplicatePosition === false) {
+
+            mushrooms.push(positionMushrooms)
+
+        }
+
+
+
+    }
+
+}
 // definiamo una let (globale) vuota che prendera ogni volta altro valore in base alla scelta
 let sizeContainer;
 //facciamo una function con switch che lo definiamo livel ogni caso ha un livelo 
 function containerList(livel) {
     //
 
-    grid.innerHTML = ''; 
+    grid.innerHTML = '';
     switch (livel) {
         case '1':
             sizeContainer = 10;
@@ -91,11 +127,14 @@ function listContainer() {
         // Aggiungiamo la riga al container della griglia
         grid.appendChild(row);
     }
+    //chiamiamo la function che abbiamo creato per generare i funghi quando si genera anche la lista 
+    mushroomsGenerate();
 }
 // quando si fa click sul button si genera la function per creare la griglia
 playButton.addEventListener("click", function () {
     listContainer()
     let livel = difficultySelect.value;
     containerList(livel)
+    mushroomsGenerate();
 });
 

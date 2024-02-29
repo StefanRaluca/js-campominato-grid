@@ -64,6 +64,9 @@ main {
 .cell-clicked{
     background-color: blue;
 }
+.mushrooms {
+    background-color: green; 
+  }
 footer div {
     font-size: 20px;
     padding: 10px;
