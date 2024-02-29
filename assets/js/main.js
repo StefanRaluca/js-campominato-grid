@@ -74,6 +74,7 @@ function containerList(livel) {
     }
     //richiamiamo la funzione iniziale per fare la griglia
     listContainer();
+    mushroomsGenerate()
 }
 
 
@@ -104,6 +105,11 @@ function listContainer() {
             column.appendChild(numberElement);
 
             console.log(progressiveNumber);
+
+            if (mushrooms.includes(progressiveNumber)) {
+                column.classList.add('mushrooms');
+            }
+            console.log(mushrooms);
             // Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
             column.addEventListener("click", function () {
                 //facciamo una let dove definiamo tutte le cell 
@@ -131,10 +137,10 @@ function listContainer() {
     mushroomsGenerate();
 }
 // quando si fa click sul button si genera la function per creare la griglia
-playButton.addEventListener("click", function () {
+ playButton.addEventListener("click", function () {
     listContainer()
     let livel = difficultySelect.value;
     containerList(livel)
     mushroomsGenerate();
-});
+}); 
 
