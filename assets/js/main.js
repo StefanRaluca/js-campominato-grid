@@ -14,8 +14,10 @@ let playButton = document.querySelector("button");
 console.log(playButton);
 //creiamo un array vuota per i funghi 
 let mushrooms = [];
-// creiamo un let score dove definiamo 0;
-let score = 0;
+// selezioniamo il span dal html 
+let scoreElement = document.getElementById('score');
+// creiamo un let impostato su false e quando sarà true (nel ciclo if )fermera il gioco
+let gameStopped = false;
 //Bonus
 //selezioniamo il input 
 let selectYourLivel = document.getElementById('difficultySelect');
@@ -24,7 +26,7 @@ let selectYourLivel = document.getElementById('difficultySelect');
 //creiamo una function per generare i numeri casuali nel array mushrooms
 function mushroomsGenerate(number) {
     mushrooms = [];
-    let i = 0;
+/*     let i = 0; */
     // facciamo un ciclo while per stabilire la condizione dei numeri nel array 
     while (mushrooms.length < 16) {
         //stabiliamo una variabile su false  per vedere se  posizione è duplicata
@@ -48,7 +50,7 @@ function mushroomsGenerate(number) {
         }
 
     }
-   
+
 
 }
 // definiamo una let (globale) vuota che prendera ogni volta altro valore in base alla scelta
@@ -79,6 +81,9 @@ function containerList(livel) {
 
 // facciamo una funzione in quale generiamo le righe e le collone 
 function listContainer() {
+    // creiamo un let score dove definiamo 0;
+    let score = 0;
+
     // Generiamo le righe del container list
     for (let i = 0; i < sizeContainer; i++) {
         // Creiamo un elemento div per rappresentare la riga
@@ -105,23 +110,39 @@ function listContainer() {
 
             console.log(progressiveNumber);
 
-        
-           // console.log(mushrooms);
+
+            // console.log(mushrooms);
+
+/* let numberOfProves = document.createElement('span')
+numberOfProves.innerHTML=progressiveNumber;
+column.appendChild(numberOfProves)
+ */
             // Aggiungiamo un event listener per cambiare il colore della cella quando viene cliccata
             column.addEventListener("click", function () {
                 //facciamo una let dove definiamo tutte le cell 
                 let allCell = document.querySelectorAll('.container-column');
                 //console.log(allCell);
-            /*     //loop for per rimuovere la classe 
-                for (i = 0; i < allCell.length; i++) {
-                    allCell[i].classList.remove('cell-clicked');
-                } */
+                if (gameStopped) {
+                    return; // Se il gioco è terminato, usciamo dalla funzione senza fare nulla
+                }
+
                 //usiamo toggle che aggiunge la classe (o la rimuove) nel nostro caso lo aggiunge 
                 column.classList.toggle('cell-clicked');
 
-    if (mushrooms.includes(progressiveNumber)) {
-                column.classList.add('mushrooms');
-            }
+                if (mushrooms.includes(progressiveNumber)) {
+                    column.classList.add('mushrooms');
+                    // alerta perchè hai calpestato la cassella del fungo
+                    setTimeout(function(){
+                        alert('You lose ' + score);
+                    }, 500);
+                    gameStopped = true;
+                }
+                else{
+                    score++;
+                    scoreElement.innerHTML = "Your Score: " + score;
+             /*        console.log(score); */
+                }
+
                 // Stampiamo in   console il numero della cella cliccata
                 console.log('Clicked cell:', progressiveNumber , mushrooms);
             });
@@ -137,10 +158,11 @@ function listContainer() {
     mushroomsGenerate();
 }
 // quando si fa click sul button si genera la function per creare la griglia
- playButton.addEventListener("click", function () {
+playButton.addEventListener("click", function () {
     listContainer()
     let livel = difficultySelect.value;
     containerList(livel)
-    mushroomsGenerate();
-}); 
+  /*   mushroomsGenerate(); */
+   gameStopped = false;
+});
 
